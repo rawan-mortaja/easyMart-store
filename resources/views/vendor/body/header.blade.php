@@ -196,7 +196,7 @@
                             <a class="dropdown-item" href="javascript:;">
                                 <div class="d-flex align-items-center">
                                     <div class="user-online">
-                                        <img src="{{ asset('adminbackend/assets/images/avatars/avatar-1.png') }}"
+                                        <img src="{{ asset('vendorbackend/assets/images/avatars/avatar-1.png') }}"
                                             class="msg-avatar" alt="user avatar">
                                     </div>
                                     <div class="flex-grow-1">
@@ -209,7 +209,7 @@
                             <a class="dropdown-item" href="javascript:;">
                                 <div class="d-flex align-items-center">
                                     <div class="user-online">
-                                        <img src="{{ asset('adminbackend/assets/images/avatars/avatar-2.png') }}"
+                                        <img src="{{ asset('vendorbackend/assets/images/avatars/avatar-2.png') }}"
                                             class="msg-avatar" alt="user avatar">
                                     </div>
                                     <div class="flex-grow-1">
@@ -222,7 +222,7 @@
                             <a class="dropdown-item" href="javascript:;">
                                 <div class="d-flex align-items-center">
                                     <div class="user-online">
-                                        <img src="{{ asset('adminbackend/assets/images/avatars/avatar-3.png" class="msg-avatar') }}"
+                                        <img src="{{ asset('vendorbackend/assets/images/avatars/avatar-3.png" class="msg-avatar') }}"
                                             alt="user avatar">
                                     </div>
                                     <div class="flex-grow-1">
@@ -235,7 +235,7 @@
                             <a class="dropdown-item" href="javascript:;">
                                 <div class="d-flex align-items-center">
                                     <div class="user-online">
-                                        <img src="{{ asset('adminbackend/assets/images/avatars/avatar-4.png') }}"
+                                        <img src="{{ asset('vendorbackend/assets/images/avatars/avatar-4.png') }}"
                                             class="msg-avatar" alt="user avatar">
                                     </div>
                                     <div class="flex-grow-1">
@@ -248,7 +248,7 @@
                             <a class="dropdown-item" href="javascript:;">
                                 <div class="d-flex align-items-center">
                                     <div class="user-online">
-                                        <img src="{{ asset('adminbackend/assets/images/avatars/avatar-5.png') }}"
+                                        <img src="{{ asset('vendorbackend/assets/images/avatars/avatar-5.png') }}"
                                             class="msg-avatar" alt="user avatar">
                                     </div>
                                     <div class="flex-grow-1">
@@ -261,7 +261,7 @@
                             <a class="dropdown-item" href="javascript:;">
                                 <div class="d-flex align-items-center">
                                     <div class="user-online">
-                                        <img src="{{ asset('adminbackend/assets/images/avatars/avatar-6.png') }}"
+                                        <img src="{{ asset('vendorbackend/assets/images/avatars/avatar-6.png') }}"
                                             class="msg-avatar" alt="user avatar">
                                     </div>
                                     <div class="flex-grow-1">
@@ -274,7 +274,7 @@
                             <a class="dropdown-item" href="javascript:;">
                                 <div class="d-flex align-items-center">
                                     <div class="user-online">
-                                        <img src="{{ asset('adminbackend/assets/images/avatars/avatar-7.png') }}"
+                                        <img src="{{ asset('vendorbackend/assets/images/avatars/avatar-7.png') }}"
                                             class="msg-avatar" alt="user avatar">
                                     </div>
                                     <div class="flex-grow-1">
@@ -287,7 +287,7 @@
                             <a class="dropdown-item" href="javascript:;">
                                 <div class="d-flex align-items-center">
                                     <div class="user-online">
-                                        <img src="{{ asset('adminbackend/assets/images/avatars/avatar-8.png') }}"
+                                        <img src="{{ asset('vendorbackend/assets/images/avatars/avatar-8.png') }}"
                                             class="msg-avatar" alt="user avatar">
                                     </div>
                                     <div class="flex-grow-1">
@@ -300,7 +300,7 @@
                             <a class="dropdown-item" href="javascript:;">
                                 <div class="d-flex align-items-center">
                                     <div class="user-online">
-                                        <img src="{{ asset('adminbackend/assets/images/avatars/avatar-9.png') }}"
+                                        <img src="{{ asset('vendorbackend/assets/images/avatars/avatar-9.png') }}"
                                             class="msg-avatar" alt="user avatar">
                                     </div>
                                     <div class="flex-grow-1">
@@ -313,7 +313,7 @@
                             <a class="dropdown-item" href="javascript:;">
                                 <div class="d-flex align-items-center">
                                     <div class="user-online">
-                                        <img src="{{ asset('adminbackend/assets/images/avatars/avatar-10.png') }}"
+                                        <img src="{{ asset('vendorbackend/assets/images/avatars/avatar-10.png') }}"
                                             class="msg-avatar" alt="user avatar">
                                     </div>
                                     <div class="flex-grow-1">
@@ -326,7 +326,7 @@
                             <a class="dropdown-item" href="javascript:;">
                                 <div class="d-flex align-items-center">
                                     <div class="user-online">
-                                        <img src="{{ asset('adminbackend/assets/images/avatars/avatar-11.png') }}"
+                                        <img src="{{ asset('vendorbackend/assets/images/avatars/avatar-11.png') }}"
                                             class="msg-avatar" alt="user avatar">
                                     </div>
                                     <div class="flex-grow-1">
@@ -347,12 +347,12 @@
 
         @php
             $id = Auth::id();
-            $adminData = App\Models\User::find($id);
+            $vendorData = App\Models\User::find($id);
         @endphp
         <div class="user-box dropdown">
             <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="{{ !empty($adminData->photo) ? url('upload/admin_images/' . $adminData->photo) : url('upload/no_image.jpg') }}"
+                <img src="{{ !empty($vendorData->photo) ? url('upload/vendor_images/' . $vendorData->photo) : url('upload/no_image.jpg') }}"
                     class="user-img" alt="user avatar">
                 <div class="user-info ps-3">
                     <p class="user-name mb-0">{{ Auth::user()->name }}</p>
@@ -360,11 +360,10 @@
                 </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="{{ route('admin.profile') }}"><i
+                <li><a class="dropdown-item" href="{{ route('vendor.profile') }}"><i
                             class="bx bx-user"></i><span>Profile</span></a>
                 </li>
-                <li><a class="dropdown-item" href="{{ route('admin.change.password') }}"><i
-                            class="bx bx-cog"></i><span>Change Password</span></a>
+                <li><a class="dropdown-item" href="{{ route('vendor.change.password') }}"><i class="bx bx-cog"></i><span>Change Password</span></a>
                 </li>
                 <li><a class="dropdown-item" href="javascript:;"><i
                             class='bx bx-home-circle'></i><span>Dashboard</span></a>
@@ -378,9 +377,8 @@
                 <li>
                     <div class="dropdown-divider mb-0"></div>
                 </li>
-                <li><a class="dropdown-item" href="{{ route('admin.logout') }}">
-                        <i class='bx bx-log-out-circle'></i>
-                        <span>Logout</span></a>
+                <li><a class="dropdown-item" href="{{ route('vendor.logout') }}"><i
+                            class='bx bx-log-out-circle'></i><span>Logout</span></a>
                 </li>
             </ul>
         </div>
