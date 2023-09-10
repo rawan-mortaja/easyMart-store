@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,21 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/dashboard', [UserController::class, 'UserDashboard'])
+        ->name('user.dashboard');
+
+    Route::post('/user/profile', [UserController::class, 'UserProfileStore'])
+        ->name('user.profile.store');
+
+    Route::get('/user/logout', [UserController::class, 'UserDestroy'])
+        ->name('user.logout');
+
+    Route::post('/user/update/password', [UserController::class, 'UserUpdatePassword'])
+        ->name('update.password');
+}); //Group middlware
 
 
 Route::middleware('auth')->group(function () {
@@ -45,11 +58,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])
         ->name('admin.profile.store');
 
-    Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])
-        ->name('admin.change.password');
-
     Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])
-        ->name('update.password');
+        ->name('user.update.password');
 });
 
 
