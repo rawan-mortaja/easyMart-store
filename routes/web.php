@@ -24,6 +24,12 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
 
 Route::middleware(['auth'])->group(function () {
 
@@ -41,11 +47,18 @@ Route::middleware(['auth'])->group(function () {
 }); //Group middlware
 
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+
+Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
+
+Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])
+    ->name('vendor.login');
+
+Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])
+    ->name('become.vendor');
+
+Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])
+    ->name('vendor.register');
+
 
 //ِAdmin Dashboard
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -87,6 +100,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
             ->name('delete.brand');
     });
 
+    // Category
     Route::controller(CategoryController::class)->group(function () {
         Route::get('/all/category', 'AllCategory')
             ->name('all.category');
@@ -106,7 +120,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/category/{id}', 'DeleteCategory')
             ->name('delete.category');
     });
-
+    // SubCategory
     Route::controller(SubCategoryController::class)->group(function () {
         Route::get('/all/subcategory', 'AllSubCategory')
             ->name('all.subcategory');
@@ -125,6 +139,27 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         Route::get('/delete/subcategory/{id}', 'DeleteSubCategory')
             ->name('delete.subcategory');
+    });
+
+    // Vendor Active and Inactive
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('/inactive/vendor', 'InactiveVendor')
+            ->name('inactive.vendor');
+
+        Route::get('/active/vendor', 'ActiveVendor')
+            ->name('active.vendor');
+
+        Route::get('/inactive/vendor-details/{id}', 'InactiveVendorDetails')
+            ->name('inactive.vendor.details');
+
+        Route::post('/active/vendor/approve', 'ActiveVendorApprove')
+            ->name('active.vendor.approve');
+
+        Route::get('/active/vendor-details/{id}', 'ActiveVendorDetails')
+            ->name('active.vendor.details');
+
+        Route::post('/inactive/vendor/approve', 'InactiveVendorApprove')
+            ->name('inactive.vendor.approve');
     });
 });
 
@@ -151,8 +186,6 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         ->name('vendor.update.password');
 });
 
-Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
-Route::get('/vendor/login', [VendorController::class, 'VendorLogin']);
 
 
 
