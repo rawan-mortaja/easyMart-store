@@ -40,6 +40,7 @@ class SliderController extends Controller
             'alert-type' => 'success'
         );
 
+
         return redirect()->route('all.slider')->with($notification);
     }
 

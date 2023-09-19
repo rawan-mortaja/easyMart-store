@@ -210,6 +210,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
             ->name('product.stock');
     });
 
+
     Route::controller(SliderController::class)->group(function () {
         Route::get('/all/slider', 'AllSlider')
             ->name('all.slider');

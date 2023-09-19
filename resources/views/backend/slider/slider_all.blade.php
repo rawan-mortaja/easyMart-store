@@ -33,6 +33,7 @@
                                 <th>Slider Image </th>
                                 <th>Action</th>
                             </tr>
+
                         </thead>
                         <tbody>
                             @foreach ($sliders as $key => $item)

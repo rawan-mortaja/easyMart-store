@@ -68,6 +68,7 @@
                 <div class="menu-title">Product Manage</div>
             </a>
             <ul>
+                
                 <li> <a href="{{ route('all.product') }}">
                         <i class="bx bx-right-arrow-alt"></i>All Products</a>
                 </li>
