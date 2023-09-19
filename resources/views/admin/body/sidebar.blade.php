@@ -77,6 +77,20 @@
             </ul>
         </li>
 
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Slider Manage</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('all.slider') }}"><i class="bx bx-right-arrow-alt"></i>All Slider</a>
+                </li>
+                <li> <a href="{{ route('add.slider') }}"><i class="bx bx-right-arrow-alt"></i>Add Slider</a> </li>
+
+            </ul>
+        </li>
+
         <li class="menu-label">UI ELEMENTS</li>
         <li>
             <a href="javascript:;" class="has-arrow">
@@ -86,11 +100,11 @@
             </a>
             <ul>
                 <li> <a href="{{ route('inactive.vendor') }}"><i class="bx bx-right-arrow-alt">
-                    </i>Inactive Vendor</a>
+                        </i>Inactive Vendor</a>
                 </li>
                 <li> <a href="{{ route('active.vendor') }}"><i class="bx bx-right-arrow-alt">
-                </i>Active Vendor</a>
-            </li>
+                        </i>Active Vendor</a>
+                </li>
             </ul>
         </li>
         <li>
