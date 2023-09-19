@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -190,7 +191,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/update/product/multiimage', 'UpdateProductMultiimage')
             ->name('update.product.multiimage');
 
-        Route::get('/product/multiimg/delete/{id}', 'MulitImageDelelte')->name('product.multiimg.delete');
+        Route::get('/product/multiimg/delete/{id}', 'MulitImageDelelte')
+            ->name('product.multiimg.delete');
 
         Route::get('/product/inactive/{id}', 'ProductInactive')
             ->name('product.inactive');
@@ -200,6 +202,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
         Route::get('/delete/product/{id}', 'ProductDelete')
             ->name('delete.product');
+
 
         // For Product Stock
         Route::get('/product/stock', 'ProductStock')
@@ -228,6 +231,42 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 
     Route::post('/vendor/update/password', [VendorController::class, 'VendorUpdatePassword'])
         ->name('vendor.update.password');
+
+    Route::controller(VendorProductController::class)->group(function () {
+        Route::get('/vendor/all/product', 'VendorAllProduct')
+            ->name('vendor.all.product');
+
+        Route::get('/vendor/add/product', 'VendorAddProduct')
+            ->name('vendor.add.product');
+
+        Route::post('/vendor/store/product', 'VendorStoreProduct')
+            ->name('vendor.store.product');
+
+        Route::get('/vendor/edit/product/{id}', 'VendorEditProduct')
+            ->name('vendor.edit.product');
+
+        Route::post('/vendor/update/product', 'VendorUpdateProduct')
+            ->name('vendor.update.product');
+
+        Route::post('/vendor/update/product/thambnail', 'VendorUpdateProductThabnail')
+            ->name('vendor.update.product.thambnail');
+
+        Route::post('/vendor/update/product/multiimage', 'VendorUpdateProductmultiImage')
+            ->name('vendor.update.product.multiimage');
+
+        Route::get('/vendor/product/multiimg/delete/{id}', 'VendorMultiimgDelete')
+            ->name('vendor.product.multiimg.delete');
+
+        Route::get('/vendor/product/inactive/{id}', 'VendorProductInactive')
+            ->name('vendor.product.inactive');
+        Route::get('/vendor/product/active/{id}', 'VendorProductActive')
+            ->name('vendor.product.active');
+
+        Route::get('/vendor/delete/product/{id}', 'VendorProductDelete')
+            ->name('vendor.delete.product');
+
+        Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
+    });
 });
 
 
