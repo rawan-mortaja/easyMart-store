@@ -33,7 +33,7 @@
                     <div class="menu-title">Prodcut Manage</div>
                 </a>
                 <ul>
-                    <li> <a href="index.html"><i class="bx bx-right-arrow-alt"></i>Add Prodcut</a>
+                    <li> <a href="{{ route('vendor.all.product') }}"><i class="bx bx-right-arrow-alt"></i>Add Prodcut</a>
                     </li>
                     <li> <a href="dashboard-eCommerce.html"><i class="bx bx-right-arrow-alt"></i>All Prodcuts</a>
                     </li>
