@@ -15,7 +15,7 @@
                 <div class="d-flex justify-content-between">
                     <h6 class="text-body">There are products in your cart</h6>
                 </div>
-            </div>
+            </div>  
         </div>
         <div class="row">
             <div class="col-lg-7">
@@ -23,8 +23,6 @@
                 <div class="row">
                     <h4 class="mb-30">Billing Details</h4>
                     <form method="post">
-
-
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <input type="text" required="" name="fname" placeholder="User Name *">
@@ -33,9 +31,6 @@
                                 <input type="email" required="" name="lname" placeholder="Email *">
                             </div>
                         </div>
-
-
-
                         <div class="row shipping_calculator">
                             <div class="form-group col-lg-6">
                                 <div class="custom_select">
@@ -73,8 +68,6 @@
                                 <input required="" type="text" name="city" placeholder="Post Code *">
                             </div>
                         </div>
-
-
                         <div class="row shipping_calculator">
                             <div class="form-group col-lg-6">
                                 <div class="custom_select">
@@ -93,22 +86,12 @@
                                 <input required="" type="text" name="city" placeholder="Address *">
                             </div>
                         </div>
-
-
-
-
-
                         <div class="form-group mb-30">
                             <textarea rows="5" placeholder="Additional information"></textarea>
                         </div>
-
-
-
                     </form>
                 </div>
             </div>
-
-
             <div class="col-lg-5">
                 <div class="border p-40 cart-totals ml-30 mb-50">
                     <div class="d-flex align-items-end justify-content-between mb-30">
@@ -119,7 +102,6 @@
                     <div class="table-responsive order_table checkout">
                         <table class="table no-border">
                             <tbody>
-
                                 <tr>
                                     <td class="image product-thumbnail"><img src="assets/imgs/shop/product-1-1.jpg"
                                             alt="#"></td>
@@ -182,10 +164,6 @@
                                 </tr>
                             </tbody>
                         </table>
-
-
-
-
                         <table class="table no-border">
                             <tbody>
                                 <tr>
@@ -225,11 +203,6 @@
                                 </tr>
                             </tbody>
                         </table>
-
-
-
-
-
                     </div>
                 </div>
                 <div class="payment ml-30">
