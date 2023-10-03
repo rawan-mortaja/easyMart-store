@@ -14,7 +14,10 @@
     @include('frontend.home.products_tabs')
     <!--Products Tabs-->
 
-    @include('frontend.home.best_sales')
+    {{-- @include('frontend.home.home_features_product') --}}
+    <!--End category slider-->
+
+    @include('frontend.home.home_features_product')
     <!--End Best Sales-->
     <!-- TV Category -->
 
@@ -22,12 +25,12 @@
     <!--End TV Category -->
     <!-- Tshirt Category -->
 
-    @include('frontend.home.tshirt_actegory')
+    {{-- @include('frontend.home.tshirt_actegory') --}}
     <!--End Tshirt Category -->
     <!-- Computer Category -->
 
-    @include('frontend.home.computer_category')
-    <!--End Computer Category -->
+    {{-- @include('frontend.home.computer_category')
+    <!--End Computer Category --> --}}
 
     @include('frontend.home.columns')
     <!--End 4 columns-->
@@ -35,5 +38,5 @@
 
     @include('frontend.home.vendor_list')
     <!--End Vendor List -->
-    
+
 @endsection
