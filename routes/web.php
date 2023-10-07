@@ -266,6 +266,12 @@ Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])
 Route::get('/vendor/all', [IndexController::class, 'VendorAll'])
     ->name('vendor.all');
 
+Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']);
+
+Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWiseProduct']);
+
+Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
+
 //Vendor Dashboard
 Route::middleware(['auth', 'role:vendor'])->group(function () {
 
