@@ -272,6 +272,8 @@ Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWisePro
 
 Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
 
+Route::get('/product/view/modal/{id}', [IndexController::class, 'productViewAjax']);
+
 //Vendor Dashboard
 Route::middleware(['auth', 'role:vendor'])->group(function () {
 
