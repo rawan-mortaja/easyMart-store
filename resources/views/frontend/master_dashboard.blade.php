@@ -70,69 +70,208 @@
             }
         })
 
+        /// Start product view with Modal
+
         function productView(id) {
             // alert(id)
             $.ajax({
-                        type: 'GET',
-                        url: '/product/view/modal/' + id,
-                        dataType: 'json',
-                        success: function(data) {
-                            // console.log(data)
+                type: 'GET',
+                url: '/product/view/modal/' + id,
+                dataType: 'json',
+                success: function(data) {
+                    // console.log(data)
 
-                            $('#pname').text(data.product.product_name);
-                            $('#pprice').text(data.product.selling_price);
-                            $('#pcode').text(data.product.product_code);
-                            $('#pcategory').text(data.product.category.category_name);
-                            $('#pbrand').text(data.product.brand.brand_name);
+                    $('#pname').text(data.product.product_name);
+                    $('#pprice').text(data.product.selling_price);
+                    $('#pcode').text(data.product.product_code);
+                    $('#pcategory').text(data.product.category.category_name);
+                    $('#pbrand').text(data.product.brand.brand_name);
+                    $('#pimage').attr('src', '/' + data.product.product_thambnail);
+                    $('#pvendor_id').text(data.product.vendor_id);
 
-                            $('#pimage').attr('src', '/' + data.product.product_thambnail);
-
-
-                            if (data.product.discount_price == null) {
-                                $('#pprice').text('');
-                                $('#oldprice').text('');
-                                $('#pprice').text(data.product.selling_price);
-                            } else {
-                                $('#pprice').text(data.product.discount_price);
-                                $('#oldprice').text(data.product.selling_price);
-                            }
+                    $('#product_id').val(id);
+                    $('#qty').val(1);
 
 
-                            if (data.product.product_qty > 0) {
-                                $('#aviable').text('');
-                                $('#stockout').text('');
-                                $('#aviable').text('aviable');
-                            } else {
-                                $('#aviable').text('');
-                                $('#stockout').text('');
-                                $('#aviable').text('stockout');
-                            }
+                    // Product Price
+                    if (data.product.discount_price == null) {
+                        $('#pprice').text('');
+                        $('#oldprice').text('');
+                        $('#pprice').text(data.product.selling_price);
 
-                            $('select[name="size"]').empty();
-                            $.each(data.size, function(key, value) {
-                                    $('select[name="size"]').append('<option value=" ' + value + '">
-                                        '+value+' < /option>')
-                                        if (data.size == "") {
-                                            $('#sizeArea').hide();
-                                        } else {
-                                            $('#sizeArea').show();
-                                        }
-                                    })
+                    } else {
+                        $('#pprice').text(data.product.discount_price);
+                        $('#oldprice').text(data.product.selling_price);
+                    } // end else
 
-                                $('select[name="color"]').empty(); $.each(data.color, function(key, value) {
-                                        $('select[name="color"]').append('<option value=" ' + value + '">
-                                            '+value+' < /option>')
-                                            if (data.color == "") {
-                                                $('#colorArea').hide();
-                                            } else {
-                                                $('#colorArea').show();
-                                            }
-                                        })
 
-                                }
-                            })
+                    /// Start Stock Option
+
+                    if (data.product.product_qty > 0) {
+                        $('#aviable').text('');
+                        $('#stockout').text('');
+                        $('#aviable').text('aviable');
+
+                    } else {
+                        $('#aviable').text('');
+                        $('#stockout').text('');
+                        $('#stockout').text('stockout');
                     }
+                    ///End Start Stock Option
+
+                    ///Size
+
+                    $('select[name="size"]').empty();
+                    $.each(data.size, function(key, value) {
+                        $('select[name="size"]').append('<option value="' + value + ' ">' + value +
+                            '  </option')
+                        if (data.size == "") {
+                            $('#sizeArea').hide();
+                        } else {
+                            $('#sizeArea').show();
+                        }
+                    }) // end size
+
+
+                    ///Color
+                    $('select[name="color"]').empty();
+                    $.each(data.color, function(key, value) {
+                        $('select[name="color"]').append('<option value="' + value + ' ">' + value +
+                            '  </option')
+                        if (data.color == "") {
+                            $('#colorArea').hide();
+                        } else {
+                            $('#colorArea').show();
+                        }
+                    }) // end size
+
+
+
+
+                }
+            })
+        }
+
+        // End Product View With Modal
+
+        /// Start Add To Cart Prodcut
+
+        function addToCart() {
+
+            var product_name = $('#pname').text();
+            var id = $('#product_id').val();
+            var vendor = $('#pvendor_id').text();
+            var color = $('#color option:selected').text();
+            var size = $('#size option:selected').text();
+            var quantity = $('#qty').val();
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                data: {
+                    color: color,
+                    size: size,
+                    quantity: quantity,
+                    product_name: product_name,
+                    vendor: vendor
+                },
+                url: "/cart/data/store/" + id,
+                success: function(data) {
+                    miniCart();
+                    $('#closeModal').click();
+                    // console.log(data)
+
+                    // Start Message
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success,
+                        })
+
+                    } else {
+
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error,
+                        })
+                    }
+
+                    // End Message
+                }
+            })
+
+        }
+
+        /// End Add To Cart Product
+
+
+        /// Start Details Page Add To Cart Product
+
+        function addToCartDetails() {
+
+            var product_name = $('#dpname').text();
+            var id = $('#dproduct_id').val();
+            var vendor = $('#vproduct_id').val();
+            var color = $('#dcolor option:selected').text();
+            var size = $('#dsize option:selected').text();
+            var quantity = $('#dqty').val();
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                data: {
+                    color: color,
+                    size: size,
+                    quantity: quantity,
+                    product_name: product_name,
+                    vendor: vendor
+                },
+                url: "/dcart/data/store/" + id,
+                success: function(data) {
+                    miniCart();
+
+                    // console.log(data)
+
+                    // Start Message
+
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success,
+                        })
+
+                    } else {
+
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error,
+                        })
+                    }
+
+                    // End Message
+                }
+            })
+
+        }
+
+        /// Eend Details Page Add To Cart Product
     </script>
+
 
 </body>
 
