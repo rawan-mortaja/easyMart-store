@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\VendorProductController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -272,7 +273,16 @@ Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CatWisePro
 
 Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCatWiseProduct']);
 
-Route::get('/product/view/modal/{id}', [IndexController::class, 'productViewAjax']);
+Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+/// Add to cart store data
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+
+//Get Data mini Cart
+Route::get('/product/min/cart', [CartController::class, 'AddMiniCart']);
+
+Route::get('minicart/product/remove/{rowId}' , [CartController::class, 'RemoveMiniCart']);
+
+Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCart']);
 
 //Vendor Dashboard
 Route::middleware(['auth', 'role:vendor'])->group(function () {
